@@ -1,0 +1,10 @@
+name: publish-edgeworker
+on: [push]
+jobs:
+  deploy:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/install-akamaipowershell@1
+      - uses: actions/populate-edgerc@1
+      - run: New-EdgeWorkerVersion -Name ${{ vars.EW_NAME }} -CodeDirectory .
