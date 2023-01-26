@@ -8,4 +8,5 @@ jobs:
       - run: Install-Module -Scope CurrentUser AkamaiPowershell -Force
       - run: Import-Module AkamaiPowerShell -DisableNameChecking
       - run: Set-Content -Path ~/.edgerc -Value "[default]`nhost=${{ secrets.akamai_host }}`nclient_token=${{ secrets.akamai_client_token }}`naccess_token=${{ secrets.akamai_access_token }}`nclient_secret=${{ secrets.akamai_client_secret }}"
-      - run: New-EdgeWorkerVersion -Name ${{ vars.EW_NAME }} -CodeDirectory .
+      #- run: New-EdgeWorkerVersion -Name ${{ vars.EW_NAME }} -CodeDirectory .
+      - run: Get-Module AkamaiPowershell
