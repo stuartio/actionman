@@ -10,4 +10,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: Set-Content -Path ~/.edgerc -Value "[default]`nhost=${{ secrets.akamai_host }}`nclient_token=${{ secrets.akamai_client_token }}`naccess_token=${{ secrets.akamai_access_token }}`nclient_secret=${{ secrets.akamai_client_secret }}"
-      - run: New-EdgeWorkerVersion -Name ${{ vars.EW_NAME }} -CodeDirectory .
+      #- run: New-EdgeWorkerVersion -Name ${{ vars.EW_NAME }} -CodeDirectory .
+      - run: gc $Profile
+      - run: Get-Module AkamaiPowerShell
+      - run: Get-Module AkamaiPowerShell -ListAvailable
