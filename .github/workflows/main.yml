@@ -11,4 +11,5 @@ jobs:
       AKAMAI_DEFAULT_CLIENT_SECRET: ${{ secrets.akamai_client_secret }}
     steps:
       - uses: actions/checkout@v3
-      - run: akamai edgeworkers --accountkey ${{ vars.ACCOUNT_KEY }} upload --codeDir . ${{ vars.EW_ID }}
+      - run: echo -e "[default]\nhost=${{ secrets.akamai_host }}\nclient_token=${{ secrets.akamai_client_token }}\naccess_token=${{ secrets.akamai_access_token }}\nclient_secret=${{ secrets.akamai_client_secret }}" > ~/.edgerc
+      - run: akamai edgeworkers upload --codeDir . ${{ vars.EW_ID }}
