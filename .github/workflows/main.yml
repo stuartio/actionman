@@ -11,4 +11,4 @@ jobs:
       AKAMAI_DEFAULT_CLIENT_SECRET: ${{ secrets.akamai_client_secret }}
     steps:
       - uses: actions/checkout@v3
-      - run: akamai-edgeworkers --accountkey ${{ vars.ACCOUNT_KEY }} upload ${{ vars.EW_ID }}
+      - run: akamai edgeworkers --accountkey ${{ vars.ACCOUNT_KEY }} upload --codeDir . ${{ vars.EW_ID }}
