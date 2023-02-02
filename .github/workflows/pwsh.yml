@@ -1,5 +1,7 @@
 name: publish-edgeworker-pwsh
-on: 
+on: push
+  branches:
+    - pwsh
 jobs:
   deploy:
     runs-on: ubuntu-latest
