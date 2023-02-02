@@ -4,11 +4,10 @@ on:
     branches:
       - main
       - master
-defaults:
-  runs-on: ubuntu-latest
-  container: akamai/edgeworkers:latest
 jobs:
   deploy:
+    runs-on: ubuntu-latest
+    container: akamai/edgeworkers:latest
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -19,6 +18,8 @@ jobs:
         
   push-to-staging:
     needs: deploy
+    runs-on: ubuntu-latest
+    container: akamai/edgeworkers:latest
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -32,6 +33,8 @@ jobs:
   push-to-production:
     needs: push-to-staging
     environment: production
+    runs-on: ubuntu-latest
+    container: akamai/edgeworkers:latest
     steps:
       - name: Get code
         uses: actions/checkout@v3
