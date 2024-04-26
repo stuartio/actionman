@@ -1,3 +1,3 @@
 import os
 
-print(os.environ("ACCOUNT_KEY"))
+print(os.environ["ACCOUNT_KEY"])
