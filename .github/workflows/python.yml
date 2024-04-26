@@ -9,7 +9,7 @@ on:
 
 env:
   # Setting an environment variable with the value of a configuration variable
-  account_key: ${{ vars.ACCOUNT_KEY }}
+  ACCOUNT_KEY: ${{ vars.ACCOUNT_KEY }}
 
 jobs:
   execute:
