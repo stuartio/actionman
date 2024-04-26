@@ -5,6 +5,11 @@ on:
       - main
     paths:
       - '**.py'
+  workflow_dispatch:
+
+env:
+  # Setting an environment variable with the value of a configuration variable
+  account_key: ${{ vars.ACCOUNT_KEY }}
 
 jobs:
   execute:
