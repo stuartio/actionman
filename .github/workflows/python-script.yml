@@ -8,7 +8,10 @@ on:
   workflow_dispatch:
 
 env:
-  # Setting an environment variable with the value of a configuration variable
+  AKAMAI_HOST: ${{ secrets.akamai_host }}
+  AKAMAI_CLIENT_TOKEN: ${{ secrets.akamai_client_token }}
+  AKAMAI_ACCESS_TOKEN: ${{ secrets.akamai_access_token }}
+  AKAMAI_CLIENT_SECRET: ${{ secrets.akamai_client_secret }}
   ACCOUNT_KEY: ${{ vars.ACCOUNT_KEY }}
 
 jobs:

@@ -1,0 +1,29 @@
+name: publish-property
+on: 
+#   push:
+#     branches:
+#       - main
+#     paths:
+#       - 'property/*'
+  workflow_dispatch:
+
+env:
+  AKAMAI_HOST: ${{ secrets.akamai_host }}
+  AKAMAI_CLIENT_TOKEN: ${{ secrets.akamai_client_token }}
+  AKAMAI_ACCESS_TOKEN: ${{ secrets.akamai_access_token }}
+  AKAMAI_CLIENT_SECRET: ${{ secrets.akamai_client_secret }}
+  ACCOUNT_KEY: ${{ vars.ACCOUNT_KEY }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    container: stuartmacleod/akamaipowershell:latest
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+            $Notes = "Github Action:`n  Branch: ${{ github.base_ref }}`n  Sha: ${{ github.sha }}"
+            New-PropertyVersion -PropertyName ${{ vars.PROPERTY_NAME }} -CreateFromVersion latest
+            Set-PropertyRules -PropertyName ${{ vars.PROPERTY_NAME }} -PropertyVersion latest -InputDirectory property -VersionNotes $Notes

@@ -1,0 +1,30 @@
+name: publish-edgeworker-pwsh
+on: 
+  push:
+    branches:
+      - pwsh
+    paths:
+      - 'edgeworkers/bundle.json'
+      - 'edgeworkers/main.js'
+  workflow_dispatch:
+
+env:
+  AKAMAI_HOST: ${{ secrets.akamai_host }}
+  AKAMAI_CLIENT_TOKEN: ${{ secrets.akamai_client_token }}
+  AKAMAI_ACCESS_TOKEN: ${{ secrets.akamai_access_token }}
+  AKAMAI_CLIENT_SECRET: ${{ secrets.akamai_client_secret }}
+  ACCOUNT_KEY: ${{ vars.ACCOUNT_KEY }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    container: stuartmacleod/akamaipowershell:latest
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
+            New-EdgeWorkerVersion -Name ${{ vars.EW_NAME }} -CodeDirectory .
+            $Version = (gc bundle.json | ConvertFrom-Json).edgeworker-version
+            Deploy-EdgeWorker -Name ${{ vars.EW_NAME }} -Version $Version -Network staging
