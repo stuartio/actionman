@@ -24,6 +24,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: |
-            $Notes = "Github Action:`n  Branch: ${{ github.base_ref }}`n  Sha: ${{ github.sha }}"
+            $Notes = "Github Action:`n  Branch: ${{ github.ref_name }}`n  Sha: ${{ github.sha }}"
             New-PropertyVersion -PropertyName ${{ vars.PROPERTY_NAME }} -CreateFromVersion latest
             Set-PropertyRules -PropertyName ${{ vars.PROPERTY_NAME }} -PropertyVersion latest -InputDirectory property -VersionNotes $Notes
