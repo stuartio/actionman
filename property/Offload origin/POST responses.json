@@ -5,7 +5,7 @@
     {
       "name": "cachePost",
       "options": {
-        "enabled": false
+        "enabled": true
       }
     }
   ],
