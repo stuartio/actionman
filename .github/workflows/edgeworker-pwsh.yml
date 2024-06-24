@@ -22,7 +22,7 @@ jobs:
       run:
         shell: pwsh
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: |
             New-EdgeWorkerVersion -EdgeWorkerName ${{ vars.EW_NAME }} -CodeDirectory edgeworkers
   
@@ -34,7 +34,7 @@ jobs:
       run:
         shell: pwsh
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: |
             $Version = (Get-Content edgeworkers/bundle.json -Raw | ConvertFrom-Json).'edgeworker-version'
             Deploy-EdgeWorker -EdgeWorkerName ${{ vars.EW_NAME }} -Version $Version -Network STAGING

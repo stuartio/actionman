@@ -22,7 +22,7 @@ jobs:
       run:
         shell: pwsh
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: |
             $Notes = "Github Action:`n  Branch: ${{ github.ref_name }}`n  Author: ${{ github.event.pusher.name }}`n  Message: ${{ github.event.head_commit.message }}`n  Sha: ${{ github.sha }}"
             New-PropertyVersion -PropertyName ${{ vars.PROPERTY_NAME }} -CreateFromVersion latest
@@ -35,6 +35,6 @@ jobs:
       run:
         shell: pwsh
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: |
             Deploy-Property -PropertyName ${{ vars.PROPERTY_NAME }} -PropertyVersion latest -Network Staging -NotifyEmails ${{ vars.CONTACT_EMAIL }} 
