@@ -5,7 +5,8 @@
     {
       "name": "cachePost",
       "options": {
-        "enabled": true
+        "enabled": true,
+        "useBody": "MD5"
       }
     }
   ],
