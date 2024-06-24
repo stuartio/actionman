@@ -1,3 +1,3 @@
-export function onClientResponse (request, response) {
-  response.addHeader('EdgeWorkers', 'Hurrah!')
+export function onClientResponse(request, response) {
+  response.addHeader('EdgeWorkers', 'Woohoo!')
 }
