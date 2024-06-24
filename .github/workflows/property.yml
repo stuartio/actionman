@@ -28,6 +28,7 @@ jobs:
             New-PropertyVersion -PropertyName ${{ vars.PROPERTY_NAME }} -CreateFromVersion latest
             Set-PropertyRules -PropertyName ${{ vars.PROPERTY_NAME }} -PropertyVersion latest -InputDirectory property -VersionNotes $Notes
   Push-To-Staging:
+    needs: Update-Property
     runs-on: ubuntu-latest
     container: stuartmacleod/akamaipowershell:latest
     defaults:
