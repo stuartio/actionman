@@ -1,11 +1,11 @@
 name: publish-edgeworker
 on: 
-  push:
-    branches:
-      - main
-    paths:
-      - 'edgeworkers/bundle.json'
-      - 'edgeworkers/main.js'
+  # push:
+  #   branches:
+  #     - main
+  #   paths:
+  #     - 'edgeworkers/bundle.json'
+  #     - 'edgeworkers/main.js'
   workflow_dispatch:
 
 env:
