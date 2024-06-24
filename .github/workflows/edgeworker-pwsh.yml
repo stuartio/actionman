@@ -15,7 +15,7 @@ env:
   AKAMAI_ACCOUNT_KEY: ${{ vars.ACCOUNT_KEY }}
 
 jobs:
-  Deploy-EdgeWorker:
+  Update-EdgeWorker:
     runs-on: ubuntu-latest
     container: stuartmacleod/akamaipowershell:latest
     defaults:
@@ -25,5 +25,16 @@ jobs:
       - uses: actions/checkout@v3
       - run: |
             New-EdgeWorkerVersion -EdgeWorkerName ${{ vars.EW_NAME }} -CodeDirectory edgeworkers
+  
+  Push-To-Staging:
+    needs: Update-EdgeWorker
+    runs-on: ubuntu-latest
+    container: stuartmacleod/akamaipowershell:latest
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
             $Version = (Get-Content edgeworkers/bundle.json -Raw | ConvertFrom-Json).'edgeworker-version'
             Deploy-EdgeWorker -EdgeWorkerName ${{ vars.EW_NAME }} -Version $Version -Network STAGING
