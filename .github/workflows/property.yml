@@ -15,7 +15,7 @@ env:
   AKAMAI_ACCOUNT_KEY: ${{ vars.ACCOUNT_KEY }}
 
 jobs:
-  Deploy:
+  Update-Property:
     runs-on: ubuntu-latest
     container: stuartmacleod/akamaipowershell:latest
     defaults:
@@ -27,4 +27,13 @@ jobs:
             $Notes = "Github Action:`n  Branch: ${{ github.ref_name }}`n  Author: ${{ github.event.pusher.name }}`n  Message: ${{ github.event.head_commit.message }}`n  Sha: ${{ github.sha }}"
             New-PropertyVersion -PropertyName ${{ vars.PROPERTY_NAME }} -CreateFromVersion latest
             Set-PropertyRules -PropertyName ${{ vars.PROPERTY_NAME }} -PropertyVersion latest -InputDirectory property -VersionNotes $Notes
+  Push-To-Staging:
+    runs-on: ubuntu-latest
+    container: stuartmacleod/akamaipowershell:latest
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v3
+      - run: |
             Deploy-Property -PropertyName ${{ vars.PROPERTY_NAME }} -PropertyVersion latest -Network Staging -NotifyEmails ${{ vars.CONTACT_EMAIL }} 
