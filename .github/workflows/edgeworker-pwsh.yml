@@ -24,6 +24,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: |
-            New-EdgeWorkerVersion -Name ${{ vars.EW_NAME }} -CodeDirectory edgeworkers
+            New-EdgeWorkerVersion -EdgeWorkerName ${{ vars.EW_NAME }} -CodeDirectory edgeworkers
             $Version = (Get-Content edgeworkers/bundle.json -Raw | ConvertFrom-Json).'edgeworker-version'
-            Deploy-EdgeWorker -Name ${{ vars.EW_NAME }} -Version $Version -Network staging
+            Deploy-EdgeWorker -EdgeWorkerName ${{ vars.EW_NAME }} -Version $Version -Network STAGING
