@@ -12,7 +12,7 @@ env:
   AKAMAI_CLIENT_TOKEN: ${{ secrets.akamai_client_token }}
   AKAMAI_ACCESS_TOKEN: ${{ secrets.akamai_access_token }}
   AKAMAI_CLIENT_SECRET: ${{ secrets.akamai_client_secret }}
-  ACCOUNT_KEY: ${{ vars.ACCOUNT_KEY }}
+  AKAMAI_ACCOUNT_KEY: ${{ vars.ACCOUNT_KEY }}
 
 jobs:
   deploy:
@@ -23,6 +23,7 @@ jobs:
         shell: pwsh
     steps:
       - uses: actions/checkout@v3
+      - run: Get-Contract
       - run: |
             $Notes = "Github Action:`n  Branch: ${{ github.ref_name }}`n  Sha: ${{ github.sha }}"
             New-PropertyVersion -PropertyName ${{ vars.PROPERTY_NAME }} -CreateFromVersion latest
