@@ -2,10 +2,9 @@ name: publish-edgeworker-pwsh
 on: 
   push:
     branches:
-      - pwsh
+      - main
     paths:
-      - 'edgeworkers/bundle.json'
-      - 'edgeworkers/main.js'
+      - 'edgeworkers/**'
   workflow_dispatch:
 
 env:
@@ -16,7 +15,7 @@ env:
   ACCOUNT_KEY: ${{ vars.ACCOUNT_KEY }}
 
 jobs:
-  deploy:
+  Deploy-EdgeWorker:
     runs-on: ubuntu-latest
     container: stuartmacleod/akamaipowershell:latest
     defaults:
@@ -25,6 +24,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - run: |
-            New-EdgeWorkerVersion -Name ${{ vars.EW_NAME }} -CodeDirectory .
-            $Version = (gc bundle.json | ConvertFrom-Json).edgeworker-version
+            New-EdgeWorkerVersion -Name ${{ vars.EW_NAME }} -CodeDirectory edgeworkers
+            $Version = (Get-Content edgeworkers/bundle.json -Raw | ConvertFrom-Json).edgeworker-version
             Deploy-EdgeWorker -Name ${{ vars.EW_NAME }} -Version $Version -Network staging
