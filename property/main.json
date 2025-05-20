@@ -6,7 +6,8 @@
     "#include:Offload origin.json",
     "#include:Strengthen security.json",
     "#include:Increase availability.json",
-    "#include:Minimize payload.json"
+    "#include:Minimize payload.json",
+    "#include:edgeworkers.json"
   ],
   "behaviors": [
     {
