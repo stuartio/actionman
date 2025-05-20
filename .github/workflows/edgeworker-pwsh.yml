@@ -43,7 +43,7 @@ jobs:
             $Version = (Get-Content edgeworkers/bundle.json -Raw | ConvertFrom-Json).'edgeworker-version'
             $Activation = Deploy-EdgeWorker -EdgeWorkerName ${{ vars.EW_NAME }} -Version $Version -Network STAGING
             $Status = Get-EdgeWorkerActivation -EdgeWorkerID $Activation.edgeWorkerId -ActivationID $Activation.activationId
-            while($Status -ne 'COMPLETE'){
+            while($Status.status -ne 'COMPLETE'){
                 Start-Sleep -s 30
                 Write-Host "Activation incomplete. Sleeping for 30 seconds"
                 $Status = Get-EdgeWorkerActivation -EdgeWorkerID $Activation.edgeWorkerId -ActivationID $Activation.activationId
