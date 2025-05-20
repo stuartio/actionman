@@ -1,3 +1,3 @@
 export function onClientResponse(request, response) {
-  response.addHeader('EdgeWorkers', 'Woop!')
+  response.addHeader('EdgeWorkers', 'Version 0.1.4')
 }
