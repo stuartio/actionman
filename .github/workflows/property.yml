@@ -40,6 +40,7 @@ jobs:
             $Activation = Deploy-Property -PropertyName ${{ vars.PROPERTY_NAME }} -PropertyVersion latest -Network Staging -NotifyEmails ${{ vars.CONTACT_EMAIL }}
             $Status = Get-PropertyActivation -PropertyName ${{ vars.PROPERTY_NAME }} -ActivationID $Activation.activationID
             while($Status.status -eq 'PENDING'){
+                Write-Host "Activation incomplete. Sleeping for 30 seconds"
                 Start-Sleep -s 30
                 $Status = Get-PropertyActivation -PropertyName ${{ vars.PROPERTY_NAME }} -ActivationID $Activation.activationID
             }

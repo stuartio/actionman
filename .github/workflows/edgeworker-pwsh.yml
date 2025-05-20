@@ -41,5 +41,6 @@ jobs:
             $Status = Get-EdgeWorkerActivation -EdgeWorkerID $Activation.edgeWorkerId -ActivationID $Activation.activationId
             while($Status -ne 'COMPLETE'){
                 Start-Sleep -s 30
+                Write-Host "Activation incomplete. Sleeping for 30 seconds"
                 $Status = Get-EdgeWorkerActivation -EdgeWorkerID $Activation.edgeWorkerId -ActivationID $Activation.activationId
             }
