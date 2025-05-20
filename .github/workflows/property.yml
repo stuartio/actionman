@@ -7,13 +7,16 @@ on:
       - 'property/**'
   workflow_dispatch:
 
+concurrency:
+    group: property
+    cancel-in-progress: false
 env:
   AKAMAI_HOST: ${{ secrets.akamai_host }}
   AKAMAI_CLIENT_TOKEN: ${{ secrets.akamai_client_token }}
   AKAMAI_ACCESS_TOKEN: ${{ secrets.akamai_access_token }}
   AKAMAI_CLIENT_SECRET: ${{ secrets.akamai_client_secret }}
   # AKAMAI_ACCOUNT_KEY: ${{ vars.ACCOUNT_KEY }}
-
+  
 jobs:
   Update-Property:
     runs-on: ubuntu-latest

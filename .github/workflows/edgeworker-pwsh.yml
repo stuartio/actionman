@@ -7,6 +7,10 @@ on:
       - 'edgeworkers/**'
   workflow_dispatch:
 
+concurrency:
+    group: property
+    cancel-in-progress: false
+
 env:
   AKAMAI_HOST: ${{ secrets.akamai_host }}
   AKAMAI_CLIENT_TOKEN: ${{ secrets.akamai_client_token }}
