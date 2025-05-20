@@ -4,7 +4,7 @@
   "criteriaMustSatisfy": "all",
   "behaviors": [
     {
-      "name": "EdgeWorker",
+      "name": "edgeWorker",
       "options": {
         "enabled": true,
         "edgeWorkerId": 65112,
