@@ -7,7 +7,7 @@
       "name": "edgeWorker",
       "options": {
         "enabled": true,
-        "edgeWorkerId": 65112,
+        "edgeWorkerId": "65112",
         "mPulse": false
       }
     }
