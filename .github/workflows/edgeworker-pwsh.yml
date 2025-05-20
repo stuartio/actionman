@@ -37,4 +37,9 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
             $Version = (Get-Content edgeworkers/bundle.json -Raw | ConvertFrom-Json).'edgeworker-version'
-            Deploy-EdgeWorker -EdgeWorkerName ${{ vars.EW_NAME }} -Version $Version -Network STAGING
+            $Activation = Deploy-EdgeWorker -EdgeWorkerName ${{ vars.EW_NAME }} -Version $Version -Network STAGING
+            $Status = Get-EdgeWorkerActivation -EdgeWorkerID $Activation.edgeWorkerId -ActivationID $Activation.activationId
+            while($Status -ne 'COMPLETE'){
+                Start-Sleep -s 30
+                $Status = Get-EdgeWorkerActivation -EdgeWorkerID $Activation.edgeWorkerId -ActivationID $Activation.activationId
+            }
