@@ -17,7 +17,7 @@
         "compress": true,
         "enableTrueClientIp": true,
         "forwardHostHeader": "ORIGIN_HOSTNAME",
-        "hostname": "origin.stuartmacleod.net",
+        "hostname": "origin.example.com",
         "httpPort": 80,
         "httpsPort": 443,
         "ipVersion": "IPV4",
