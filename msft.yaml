@@ -27,7 +27,7 @@ steps:
       AKAMAI_CLIENT_SECRET: $(AkamaiClientSecret)
     inputs:
       # link to set up a service connection: https://aka.ms/azure-pipelines-service-connection
-      azureSubscription: 'Pay-As-You-Go'
+      azureSubscription: 'serv-con'
       ScriptType: 'InlineScript'
       Inline: |
         Get-NetstorageUploadAccount -UploadAccountID 'akamaipowershell'
