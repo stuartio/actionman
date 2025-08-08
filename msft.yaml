@@ -30,6 +30,7 @@ steps:
       script: |
         Set-PSRepository PSGallery -InstallationPolicy Trusted
         Install-Module Akamai.Netstorage -Force -Scope CurrentUser
-        Get-AkamaiCredentials
-        $UploadAccount = Get-NetstorageUploadAccount -UploadAccountID akamaipowershell
+        $Creds = Get-AkamaiCredentials
+        Write-Host $Creds.Host
+        $UploadAccount = Get-NetstorageUploadAccount -UploadAccountID akamaipowershell -Debug
       pwsh: true
