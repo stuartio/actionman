@@ -1,19 +1,34 @@
 
 trigger: none
 
-pool:
-  vmImage: 'windows-2025'
+parameters:
+  - name: Environment
+    type: string
+    default: Production
+    values:
+      - Production
+      - Staging
+      - RC
+      - PPE
 
 variables:
+  - name: BUILD_COUNT
+    value: $[counter('', 0)]
   - group: akamai
 
+pool:
+  vmImage: 'windows-latest'
+
 steps:
-  - task: PowerShell@2
-    displayName: 'Run Maintenance Script with PowerShell'
+  - task: AzurePowerShell@5
+    displayName: 'Run Maintenance Script with Azure PowerShell'
     inputs:
-      targetType: 'inline'
-      script: |
+      # link to set up a service connection: https://aka.ms/azure-pipelines-service-connection
+      azureSubscription: 'serv-con'
+      ScriptType: 'InlineScript'
+      Inline: |
         Set-PSRepository PSGallery -InstallationPolicy Trusted
         Install-Module Akamai.Netstorage -Force -Scope CurrentUser
-        Get-NetstorageUploadAccount -UploadAccountID akamaipowershell
+        Get-NetstorageUploadAccount -UploadAccountID $UploadAccountID
+      azurePowerShellVersion: 'LatestVersion'
       pwsh: true
