@@ -16,7 +16,7 @@ pool:
 
 variables:
   group: akamai-creds
-  test1: 'this is my variable'
+  AKAMAI_ACCESS_TOKEN: $(accessToken)
 
 steps:
   - task: PowerShell@2
