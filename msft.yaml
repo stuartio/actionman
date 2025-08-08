@@ -13,11 +13,7 @@ steps:
     inputs:
       targetType: 'inline'
       script: |
-        Write-Host "Test 1 = $Test1"
-        gci env:
         Set-PSRepository PSGallery -InstallationPolicy Trusted
         Install-Module Akamai.Netstorage -Force -Scope CurrentUser
-        $Creds = Get-AkamaiCredentials
-        Write-Host $Creds.Host
-        $UploadAccount = Get-NetstorageUploadAccount -UploadAccountID akamaipowershell -Debug
+        Get-NetstorageUploadAccount -UploadAccountID akamaipowershell
       pwsh: true
