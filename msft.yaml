@@ -26,6 +26,7 @@ steps:
       AKAMAI_ACCESS_TOKEN: $(AkamaiAccessToken)
       AKAMAI_CLIENT_SECRET: $(AkamaiClientSecret)
     inputs:
+      targetType: 'inline'
       script: |
         Set-PSRepository PSGallery -InstallationPolicy Trusted
         Install-Module Akamai.Netstorage -Force -Scope CurrentUser
