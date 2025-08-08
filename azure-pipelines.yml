@@ -9,15 +9,9 @@ pool:
   vmImage: ‘windows-latest’
 
 variables:
-  group: akamai-creds
+  - group: akamai
 
 steps:
   - powershell:
-      Install-Module Akamai.Common
-      Invoke-AkamaiRequest -Path /papi/v1/contracts
-    env:
-      AKAMAI_HOST: $(AkamaiHost)
-      AKAMAI_CLIENT_TOKEN: $(AkamaiClientToken)
-      AKAMAI_ACCESS_TOKEN: $(AkamaiAccessToken)
-      AKAMAI_CLIENT_SECRET: $(AkamaiClientSecret)
+      gci env:/
 
