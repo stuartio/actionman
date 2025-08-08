@@ -16,6 +16,7 @@ pool:
 
 variables:
   group: akamai-creds
+  test1: 'this is my variable'
 
 steps:
   - task: PowerShell@2
@@ -28,6 +29,7 @@ steps:
     inputs:
       targetType: 'inline'
       script: |
+        Write-Host "Test 1 = $Test1"
         gci env:
         Set-PSRepository PSGallery -InstallationPolicy Trusted
         Install-Module Akamai.Netstorage -Force -Scope CurrentUser
