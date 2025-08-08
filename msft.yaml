@@ -21,13 +21,14 @@ steps:
   - task: PowerShell@2
     displayName: 'Run Maintenance Script with PowerShell'
     env:
-      AKAMAI_HOST: $(AkamaiHost)
+      AKAMAI_HOST: 
       AKAMAI_CLIENT_TOKEN: $(AkamaiClientToken)
       AKAMAI_ACCESS_TOKEN: $(AkamaiAccessToken)
       AKAMAI_CLIENT_SECRET: $(AkamaiClientSecret)
     inputs:
       targetType: 'inline'
       script: |
+        gci env:
         Set-PSRepository PSGallery -InstallationPolicy Trusted
         Install-Module Akamai.Netstorage -Force -Scope CurrentUser
         $Creds = Get-AkamaiCredentials
