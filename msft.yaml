@@ -18,20 +18,16 @@ variables:
   group: akamai-creds
 
 steps:
-  - task: AzurePowerShell@5
-    displayName: 'Run Maintenance Script with Azure PowerShell'
+  - task: PowerShell@2
+    displayName: 'Run Maintenance Script with PowerShell'
     env:
       AKAMAI_HOST: $(AkamaiHost)
       AKAMAI_CLIENT_TOKEN: $(AkamaiClientToken)
       AKAMAI_ACCESS_TOKEN: $(AkamaiAccessToken)
       AKAMAI_CLIENT_SECRET: $(AkamaiClientSecret)
     inputs:
-      # link to set up a service connection: https://aka.ms/azure-pipelines-service-connection
-      azureSubscription: 'serv-con'
-      ScriptType: 'InlineScript'
-      Inline: |
+      script: |
         Set-PSRepository PSGallery -InstallationPolicy Trusted
-        Install-Module Akamai.Netstorage -Scope CurrentUser -Force
-        Get-NetstorageUploadAccount -UploadAccountID 'akamaipowershell'
-      azurePowerShellVersion: 'LatestVersion'
+        Install-Module Akamai.Netstorage -Force -Scope CurrentUser
+        $UploadAccount = Get-NetstorageUploadAccount -UploadAccountID akamaipowershell
       pwsh: true
