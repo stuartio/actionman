@@ -1,21 +1,11 @@
 
 trigger: none
 
-parameters:
-  - name: Environment
-    type: string
-    default: Production
-    values:
-      - Production
-      - Staging
-      - RC
-      - PPE
-
 pool:
   vmImage: 'windows-2025'
 
 variables:
-  group: akamai-creds
+  group: akamai
   AKAMAI_ACCESS_TOKEN: $(accessToken)
 
 steps:
