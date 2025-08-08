@@ -12,7 +12,9 @@ parameters:
       - PPE
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'ubuntu-latest'
+
+container: akamai/powershell:latest
 
 variables:
   group: akamai-creds
@@ -30,7 +32,6 @@ steps:
       azureSubscription: 'serv-con'
       ScriptType: 'InlineScript'
       Inline: |
-        Install-Module Akamai.Netstorage
         Get-NetstorageUploadAccount -UploadAccountID 'akamaipowershell'
       azurePowerShellVersion: 'LatestVersion'
       pwsh: true
