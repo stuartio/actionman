@@ -15,13 +15,13 @@ pool:
   vmImage: 'windows-2025'
 
 variables:
-  group: akamaicreds
+  group: akamai-creds
 
 steps:
   - task: PowerShell@2
     displayName: 'Run Maintenance Script with PowerShell'
     env:
-      AKAMAI_HOST: 
+      AKAMAI_HOST: $(AkamaiHost)
       AKAMAI_CLIENT_TOKEN: $(AkamaiClientToken)
       AKAMAI_ACCESS_TOKEN: $(AkamaiAccessToken)
       AKAMAI_CLIENT_SECRET: $(AkamaiClientSecret)
