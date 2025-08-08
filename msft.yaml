@@ -5,8 +5,7 @@ pool:
   vmImage: 'windows-2025'
 
 variables:
-  group: akamai
-  AKAMAI_ACCESS_TOKEN: $(accessToken)
+  - group: akamai
 
 steps:
   - task: PowerShell@2
